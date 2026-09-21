@@ -14,9 +14,19 @@ var pontuacao: int = 0:
 		pontuacao_mudou.emit(pontuacao)
 
 
-func _ready() -> void:
-	# TODO: montar a primeira onda de inimigos.
-	pass
+## A formação avisa a cada bandido derrubado.
+func _ao_abater_bandido(pontos: int) -> void:
+	somar_pontos(pontos)
+
+
+## Último bandido caiu.
+func _ao_derrotar_formacao() -> void:
+	terminar_em_vitoria()
+
+
+## Os bandidos chegaram à altura do xerife.
+func _ao_formacao_alcancar_o_chao() -> void:
+	terminar_em_derrota()
 
 
 # TEMPORÁRIO: atalho para voltar à tela de início enquanto não há jogabilidade.
@@ -28,12 +38,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Chame quando o jogador perder a última vida.
 func terminar_em_derrota() -> void:
-	SceneManager.ir_para_derrota(pontuacao)
+	if ResourceLoader.exists(SceneManager.TELA_DERROTA):
+		SceneManager.ir_para_derrota(pontuacao)
+	else:
+		# A tela de derrota ainda não existe; volta ao início para não travar.
+		SceneManager.ir_para_inicio()
 
 
 ## Chame quando a última onda for derrotada.
 func terminar_em_vitoria() -> void:
-	SceneManager.ir_para_vitoria(pontuacao)
+	if ResourceLoader.exists(SceneManager.TELA_VITORIA):
+		SceneManager.ir_para_vitoria(pontuacao)
+	else:
+		SceneManager.ir_para_inicio()
 
 
 func somar_pontos(pontos: int) -> void:

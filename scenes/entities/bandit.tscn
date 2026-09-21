@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj3t58aw6o3s7"]
+
+[ext_resource type="Script" uid="uid://bo3zu2m5q5xni" path="res://scripts/entities/bandit.gd" id="0_script"]
+[ext_resource type="Texture2D" uid="uid://b21pad1kq07o8" path="res://assets/sprites/enemies/bandit.png" id="1_ye54p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u68yi"]
+atlas = ExtResource("1_ye54p")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b6j5"]
+atlas = ExtResource("1_ye54p")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_con8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u68yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b6j5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_con8p"]
+size = Vector2(8, 8)
+
+[node name="Bandit" type="Area2D" unique_id=2109188814]
+script = ExtResource("0_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=42668297]
+sprite_frames = SubResource("SpriteFrames_con8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1921172114]
+shape = SubResource("RectangleShape2D_con8p")

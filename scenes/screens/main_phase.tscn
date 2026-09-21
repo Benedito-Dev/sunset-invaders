@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw6msk664a613"]
+[gd_scene load_steps=5 format=3 uid="uid://dw6msk664a613"]
 
 [ext_resource type="Script" uid="uid://bx0xfox3wxxck" path="res://scripts/screens/main_phase.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cumlp2ngvv742" path="res://scenes/entities/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://c4hoabx7nehjv" path="res://scripts/entities/bandit_formation.gd" id="3_formacao"]
+[ext_resource type="PackedScene" uid="uid://dj3t58aw6o3s7" path="res://scenes/entities/bandit.tscn" id="4_bandido"]
 
 [node name="MainPhase" type="Node2D" unique_id=1183728124]
 script = ExtResource("1_script")
@@ -19,3 +21,12 @@ color = Color(0.61725473, 0.1624631, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(130, 188)
+
+[node name="Bandidos" type="Node2D" parent="."]
+position = Vector2(60, 32)
+script = ExtResource("3_formacao")
+cena_do_bandido = ExtResource("4_bandido")
+
+[connection signal="bandido_abatido" from="Bandidos" to="." method="_ao_abater_bandido"]
+[connection signal="formacao_derrotada" from="Bandidos" to="." method="_ao_derrotar_formacao"]
+[connection signal="formacao_alcancou_o_chao" from="Bandidos" to="." method="_ao_formacao_alcancar_o_chao"]
