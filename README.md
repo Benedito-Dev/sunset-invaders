@@ -78,25 +78,38 @@ Em seguida, abra o **Godot Engine**, clique em `Importar`, selecione o arquivo
 
 ```
 sunset-invaders/
-├── assets/             # Recursos importados pela engine (res://assets/...)
-│   └── sprites/
-│       ├── player/         # Xerife e projéteis
-│       ├── enemies/        # Bandidos e chefes
-│       ├── environment/    # Cobertura destrutível
-│       └── ui/             # Telas e interface
-├── art-source/         # Arquivos .aseprite editáveis (não lidos pela engine)
-├── icon.svg            # Ícone do projeto
-├── LICENSE             # Licença MIT
-└── project.godot       # Configuração da engine
+├── scenes/             # Cenas .tscn
+│   ├── screens/            # Telas: título, fase, derrota, vitória
+│   ├── entities/           # Jogador, bandidos, projéteis, cobertura
+│   └── components/         # Peças reutilizáveis (vida, hitbox)
+├── scripts/            # Código .gd, espelhando scenes/
+│   ├── autoload/           # Singletons (SceneManager)
+│   ├── globals/            # Constantes e helpers
+│   ├── screens/
+│   ├── entities/
+│   └── components/
+├── assets/             # Recursos importados pela engine
+│   ├── sprites/            # player, enemies, environment, ui
+│   ├── audio/              # music, sfx
+│   └── fonts/
+├── resources/          # .tres customizados (ondas, configs de inimigo)
+├── art-source/         # Arquivos .aseprite (ignorados pela engine)
+├── icon.svg
+├── LICENSE
+└── project.godot
 ```
 
-Cada pasta de recursos tem seu próprio README com convenções de nomenclatura e
-fluxo de trabalho: [`assets/`](assets/README.md) e [`art-source/`](art-source/README.md).
+Cada pasta tem README próprio com suas convenções: [`scenes/`](scenes/README.md),
+[`scripts/`](scripts/README.md), [`assets/`](assets/README.md) e
+[`art-source/`](art-source/README.md).
 
-> A estrutura de cenas e scripts será documentada conforme o desenvolvimento avança.
+**Começando pelas cenas?** O passo a passo para criar as quatro telas está em
+[`scenes/screens/COMO_CRIAR.md`](scenes/screens/COMO_CRIAR.md).
 
 ## 🗺️ Roadmap
 
+- [x] Estrutura de pastas e navegação entre telas (SceneManager)
+- [ ] Cenas das quatro telas
 - [ ] Movimentação e disparo do jogador
 - [ ] Formação de inimigos com aceleração progressiva
 - [ ] Sistema de munição e recarga
