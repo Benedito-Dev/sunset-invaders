@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cumlp2ngvv742"]
+
+[ext_resource type="Texture2D" uid="uid://pcjeifidnm1e" path="res://assets/sprites/player/sheriff.png" id="1_3vyb7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_con8p"]
+size = Vector2(16, 15.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=1501411112]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1308959773]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=807694509]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_con8p")

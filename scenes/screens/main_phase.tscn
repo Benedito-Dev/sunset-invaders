@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://d0gm8jd4yftva"]
+[gd_scene format=3 uid="uid://dw6msk664a613"]
 
-[node name="MainPhase" type="Node2D"]
+[node name="MainPhase" type="Node2D" unique_id=1183728124]
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=162079941]
 layer = -1
 
-[node name="Color" type="ColorRect" parent="Background"]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1623774529]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.36, 0.12, 0.09, 1)
+color = Color(0.61725473, 0.1624631, 0, 1)
