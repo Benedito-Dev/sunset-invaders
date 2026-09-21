@@ -116,7 +116,7 @@ func _saltar_para(destino: Vector2) -> void:
 ## Aponta todos os bandidos para o lado em que a formação caminha.
 func _encarar_o_sentido() -> void:
 	var pose := POSE_DIREITA if _sentido > 0 else POSE_ESQUERDA
-	for bandido in get_children():
+	for bandido: Node2D in get_children():
 		bandido.trocar_pose(pose)
 
 
@@ -128,10 +128,10 @@ func _vai_ultrapassar_a_borda() -> bool:
 
 	# Durante o salto a formação está no ápice; mede a partir do pouso.
 	var deslocamento := _pouso.x - position.x
-	var menor_x := INF
-	var maior_x := -INF
-	for bandido in bandidos:
-		var x := bandido.global_position.x + deslocamento
+	var menor_x: float = INF
+	var maior_x: float = -INF
+	for bandido: Node2D in bandidos:
+		var x: float = bandido.global_position.x + deslocamento
 		menor_x = minf(menor_x, x)
 		maior_x = maxf(maior_x, x)
 
