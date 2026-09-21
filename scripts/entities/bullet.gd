@@ -29,7 +29,9 @@ func _physics_process(delta: float) -> void:
 func _ao_encostar_em(area: Area2D) -> void:
 	if not area.has_method("levar_tiro"):
 		return
-	if grupo_alvo != &"" and not area.is_in_group(grupo_alvo):
+	# A barreira consome qualquer tiro, venha de quem vier.
+	var e_barreira := area.is_in_group(&"barreiras")
+	if not e_barreira and grupo_alvo != &"" and not area.is_in_group(grupo_alvo):
 		return
 	area.levar_tiro()
 	queue_free()
