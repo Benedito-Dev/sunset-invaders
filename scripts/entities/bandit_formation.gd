@@ -46,6 +46,11 @@ signal bandido_abatido(pontos: int)
 ## Quanto tempo a formação fica suspensa no ápice, em segundos.
 @export var tempo_no_apice: float = 0.1
 
+## Abaixo deste intervalo entre passos o salto é abandonado: não há tempo para
+## o olho ler o arco, e o vaivém passaria por tremor. A formação então avança
+## reto, o que em alta velocidade lê como investida.
+@export var intervalo_minimo_para_saltar: float = 0.3
+
 ## Intervalo médio entre disparos da formação, em segundos.
 @export var intervalo_entre_disparos: float = 1.5
 
@@ -147,9 +152,12 @@ func _dar_um_passo() -> void:
 		_saltar_para(Vector2(_pouso.x + passo_horizontal * _sentido, _pouso.y))
 
 
-## Salta até o destino passando pelo ápice, com uma pausa breve no ar.
+## Vai até o destino: com um salto, quando há tempo de vê-lo, ou direto.
 func _saltar_para(destino: Vector2) -> void:
 	_pouso = destino
+	if _intervalo_atual() < intervalo_minimo_para_saltar:
+		position = destino
+		return
 	var apice := Vector2(
 		(position.x + destino.x) / 2.0,
 		minf(position.y, destino.y) - altura_do_salto
