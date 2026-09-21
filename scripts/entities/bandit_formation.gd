@@ -5,6 +5,9 @@ extends Node2D
 ## Monta a grade e move todos juntos: avança na horizontal até alguém encostar
 ## na borda, então desce um degrau e inverte o sentido. Os bandidos encaram o
 ## lado para onde a formação caminha.
+##
+## Cada passo é um saltinho: a formação salta ao ápice, faz uma breve pausa no
+## ar e cai no destino, em vez de escorregar até ele.
 
 ## Emitido quando o último bandido cai.
 signal formacao_derrotada
@@ -37,6 +40,12 @@ signal bandido_abatido(pontos: int)
 ## Altura em que a formação é considerada no chão.
 @export var altura_limite: float = 180.0
 
+## Quanto o salto sobe no meio do passo, em pixels.
+@export var altura_do_salto: float = 4.0
+
+## Quanto tempo a formação fica suspensa no ápice, em segundos.
+@export var tempo_no_apice: float = 0.1
+
 ## Índices dos quadros de pose no AnimatedSprite2D do bandido.
 const POSE_ESQUERDA := 0
 const POSE_DIREITA := 1
@@ -45,10 +54,14 @@ var _sentido := 1
 var _tempo_ate_o_proximo_passo := 0.0
 var _total_inicial := 0
 
+## Onde a formação pousa ao fim do salto em curso.
+var _pouso := Vector2.ZERO
+
 
 func _ready() -> void:
 	_montar_grade()
 	_encarar_o_sentido()
+	_pouso = position
 	_tempo_ate_o_proximo_passo = intervalo_inicial
 
 
@@ -78,12 +91,26 @@ func _montar_grade() -> void:
 func _dar_um_passo() -> void:
 	if _vai_ultrapassar_a_borda():
 		_sentido *= -1
-		position.y += passo_vertical
+		_saltar_para(Vector2(_pouso.x, _pouso.y + passo_vertical))
 		_encarar_o_sentido()
-		if position.y >= altura_limite:
+		if _pouso.y >= altura_limite:
 			formacao_alcancou_o_chao.emit()
 	else:
-		position.x += passo_horizontal * _sentido
+		_saltar_para(Vector2(_pouso.x + passo_horizontal * _sentido, _pouso.y))
+
+
+## Salta até o destino passando pelo ápice, com uma pausa breve no ar.
+func _saltar_para(destino: Vector2) -> void:
+	_pouso = destino
+	var apice := Vector2(
+		(position.x + destino.x) / 2.0,
+		minf(position.y, destino.y) - altura_do_salto
+	)
+	position = apice
+	await get_tree().create_timer(tempo_no_apice).timeout
+	# A formação pode ter sido liberada durante a espera.
+	if is_inside_tree():
+		position = destino
 
 
 ## Aponta todos os bandidos para o lado em que a formação caminha.
@@ -99,11 +126,14 @@ func _vai_ultrapassar_a_borda() -> bool:
 	if bandidos.is_empty():
 		return false
 
+	# Durante o salto a formação está no ápice; mede a partir do pouso.
+	var deslocamento := _pouso.x - position.x
 	var menor_x := INF
 	var maior_x := -INF
 	for bandido in bandidos:
-		menor_x = minf(menor_x, bandido.global_position.x)
-		maior_x = maxf(maior_x, bandido.global_position.x)
+		var x := bandido.global_position.x + deslocamento
+		menor_x = minf(menor_x, x)
+		maior_x = maxf(maior_x, x)
 
 	var largura_tela := get_viewport_rect().size.x
 	var proximo_menor := menor_x + passo_horizontal * _sentido
