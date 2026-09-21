@@ -1,11 +1,13 @@
-[gd_scene format=3 uid="uid://cumlp2ngvv742"]
+[gd_scene load_steps=3 format=3 uid="uid://cumlp2ngvv742"]
 
+[ext_resource type="Script" uid="uid://bqa49yfmxbh2w" path="res://scripts/entities/player.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://pcjeifidnm1e" path="res://assets/sprites/player/sheriff.png" id="1_3vyb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_con8p"]
 size = Vector2(16, 15.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=1501411112]
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1308959773]
 texture = ExtResource("1_3vyb7")

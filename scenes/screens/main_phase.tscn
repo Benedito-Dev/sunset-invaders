@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw6msk664a613"]
+[gd_scene load_steps=3 format=3 uid="uid://dw6msk664a613"]
 
 [ext_resource type="Script" uid="uid://bx0xfox3wxxck" path="res://scripts/screens/main_phase.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cumlp2ngvv742" path="res://scenes/entities/player.tscn" id="2_player"]
 
 [node name="MainPhase" type="Node2D" unique_id=1183728124]
 script = ExtResource("1_script")
@@ -15,3 +16,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.61725473, 0.1624631, 0, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(128, 200)
