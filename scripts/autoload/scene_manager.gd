@@ -15,7 +15,7 @@ extends CanvasLayer
 ## Emitido quando a nova cena já está ativa e o fade-in terminou.
 signal transition_finished
 
-const TITLE := "res://scenes/screens/title.tscn"
+const START_SCREEN := "res://scenes/screens/start_screen.tscn"
 const GAME := "res://scenes/screens/game.tscn"
 const GAME_OVER := "res://scenes/screens/game_over.tscn"
 const VICTORY := "res://scenes/screens/victory.tscn"
@@ -46,8 +46,8 @@ func _build_fade_rect() -> void:
 	add_child(_fade)
 
 
-func goto_title() -> void:
-	_change_scene(TITLE)
+func goto_start_screen() -> void:
+	_change_scene(START_SCREEN)
 
 
 func goto_game() -> void:

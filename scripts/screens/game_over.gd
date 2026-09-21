@@ -18,4 +18,4 @@ func _on_retry_pressed() -> void:
 
 
 func _on_title_pressed() -> void:
-	SceneManager.goto_title()
+	SceneManager.goto_start_screen()

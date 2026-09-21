@@ -17,4 +17,4 @@ func _on_play_again_pressed() -> void:
 
 
 func _on_title_pressed() -> void:
-	SceneManager.goto_title()
+	SceneManager.goto_start_screen()
