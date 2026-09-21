@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d0gm8jd4yftva"]
+
+[node name="MainPhase" type="Node2D"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Color" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36, 0.12, 0.09, 1)

@@ -16,7 +16,7 @@ extends CanvasLayer
 signal transition_finished
 
 const START_SCREEN := "res://scenes/screens/start_screen.tscn"
-const GAME := "res://scenes/screens/game.tscn"
+const MAIN_PHASE := "res://scenes/screens/main_phase.tscn"
 const GAME_OVER := "res://scenes/screens/game_over.tscn"
 const VICTORY := "res://scenes/screens/victory.tscn"
 
@@ -52,7 +52,7 @@ func goto_start_screen() -> void:
 
 func goto_game() -> void:
 	last_score = 0
-	_change_scene(GAME)
+	_change_scene(MAIN_PHASE)
 
 
 func goto_game_over(score: int = 0) -> void:
