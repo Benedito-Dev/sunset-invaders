@@ -34,9 +34,23 @@ func _ao_encostar_em(area: Area2D) -> void:
 	if not e_barreira and grupo_alvo != &"" and not area.is_in_group(grupo_alvo):
 		return
 	area.levar_tiro()
-	queue_free()
+	_desaparecer()
 
 
 ## Emitido pelo VisibleOnScreenNotifier2D quando a bala deixa a tela.
 func _ao_sair_da_tela() -> void:
+	_desaparecer()
+
+
+## Sai de cena sem cortar o som do disparo, caso ele ainda esteja tocando.
+func _desaparecer() -> void:
+	var som: AudioStreamPlayer = $SomDoTiro
+	if not som.playing:
+		queue_free()
+		return
+	# Solta o som na cena para que termine sozinho, e some com o resto.
+	hide()
+	set_physics_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
+	await som.finished
 	queue_free()

@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://c2hqxpyjf7xjo"]
+[gd_scene load_steps=5 format=3 uid="uid://c2hqxpyjf7xjo"]
 
 [ext_resource type="Script" uid="uid://brxf23wliffr0" path="res://scripts/entities/bullet.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://cidjnfy47y34o" path="res://assets/sprites/player/bullet.png" id="2_textura"]
+[ext_resource type="AudioStream" uid="uid://bw8kttpnfgi1r" path="res://assets/audio/sfx/shoot.wav" id="3_som"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bala"]
 size = Vector2(3, 7)
@@ -17,5 +18,9 @@ shape = SubResource("RectangleShape2D_bala")
 
 [node name="SaidaDeTela" type="VisibleOnScreenNotifier2D" parent="." unique_id=58769118]
 rect = Rect2(-1.5, -3.5, 3, 7)
+
+[node name="SomDoTiro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_som")
+autoplay = true
 
 [connection signal="screen_exited" from="SaidaDeTela" to="." method="_ao_sair_da_tela"]
