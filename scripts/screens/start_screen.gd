@@ -6,35 +6,35 @@ extends Control
 ## do controle, então não é preciso registrar nada no Input Map.
 
 ## Quantas vezes o rótulo apaga e acende antes da troca de cena.
-const BLINK_COUNT := 4
+const PISCADAS := 4
 
 ## Duração de cada apagar-acender, em segundos.
-const BLINK_STEP := 0.08
+const INTERVALO_PISCADA := 0.08
 
-@onready var _label: Label = $Label
+@onready var _rotulo: Label = $Label
 
-var _confirmed := false
+var _confirmado := false
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _confirmed or not event.is_action_pressed("ui_accept"):
+	if _confirmado or not event.is_action_pressed("ui_accept"):
 		return
-	_confirmed = true
+	_confirmado = true
 	get_viewport().set_input_as_handled()
-	_blink_then_start()
+	_piscar_e_comecar()
 
 
 ## Pisca o rótulo como confirmação e só então troca de cena.
-func _blink_then_start() -> void:
+func _piscar_e_comecar() -> void:
 	var tween := create_tween()
-	for i in BLINK_COUNT:
-		tween.tween_callback(_set_label_visible.bind(false))
-		tween.tween_interval(BLINK_STEP)
-		tween.tween_callback(_set_label_visible.bind(true))
-		tween.tween_interval(BLINK_STEP)
+	for i in PISCADAS:
+		tween.tween_callback(_mostrar_rotulo.bind(false))
+		tween.tween_interval(INTERVALO_PISCADA)
+		tween.tween_callback(_mostrar_rotulo.bind(true))
+		tween.tween_interval(INTERVALO_PISCADA)
 	await tween.finished
-	SceneManager.goto_game()
+	SceneManager.ir_para_fase()
 
 
-func _set_label_visible(is_visible: bool) -> void:
-	_label.visible = is_visible
+func _mostrar_rotulo(visivel: bool) -> void:
+	_rotulo.visible = visivel

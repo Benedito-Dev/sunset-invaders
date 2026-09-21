@@ -6,12 +6,12 @@ extends Node2D
 ## e decide quando o jogo termina. A lógica de cada entidade mora na própria
 ## entidade — esta cena apenas coordena.
 
-signal score_changed(new_score: int)
+signal pontuacao_mudou(nova_pontuacao: int)
 
-var score: int = 0:
-	set(value):
-		score = value
-		score_changed.emit(score)
+var pontuacao: int = 0:
+	set(valor):
+		pontuacao = valor
+		pontuacao_mudou.emit(pontuacao)
 
 
 func _ready() -> void:
@@ -23,18 +23,18 @@ func _ready() -> void:
 # Remova quando a derrota real existir.
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		SceneManager.goto_start_screen()
+		SceneManager.ir_para_inicio()
 
 
 ## Chame quando o jogador perder a última vida.
-func end_in_defeat() -> void:
-	SceneManager.goto_game_over(score)
+func terminar_em_derrota() -> void:
+	SceneManager.ir_para_derrota(pontuacao)
 
 
 ## Chame quando a última onda for derrotada.
-func end_in_victory() -> void:
-	SceneManager.goto_victory(score)
+func terminar_em_vitoria() -> void:
+	SceneManager.ir_para_vitoria(pontuacao)
 
 
-func add_score(points: int) -> void:
-	score += points
+func somar_pontos(pontos: int) -> void:
+	pontuacao += pontos
