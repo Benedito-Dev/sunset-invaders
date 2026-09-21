@@ -20,7 +20,7 @@ signal abatido(pontos: int)
 
 
 func _ready() -> void:
-	add_to_group(&"bandidos")
+	add_to_group(&"inimigos")
 
 
 ## Chamado pela formação, para todos encararem o mesmo lado.

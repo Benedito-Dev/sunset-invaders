@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://etp4xlsxru2o"]
+
+[ext_resource type="Script" uid="uid://d1bh818qwv6pa" path="res://scripts/screens/game_over.gd" id="1_mqkc1"]
+
+[node name="GameOver" type="Control" unique_id=1119603286]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqkc1")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1936369894]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=64336159]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Game_over" type="Label" parent="Background" unique_id=72520303]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.9882353, 0, 0, 1)
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Label" parent="Background" unique_id=2146002390]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 33.0
+offset_right = 36.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1

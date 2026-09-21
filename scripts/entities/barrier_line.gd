@@ -11,10 +11,10 @@ extends Node2D
 @export var quantidade: int = 4
 
 ## Quantos blocos formam cada barreira.
-@export var blocos_por_barreira: Vector2i = Vector2i(4, 3)
+@export var blocos_por_barreira: Vector2i = Vector2i(8, 8)
 
 ## Tamanho de um bloco, em pixels. Precisa bater com a arte.
-@export var tamanho_do_bloco: Vector2 = Vector2(8, 4)
+@export var tamanho_do_bloco: Vector2 = Vector2(4, 2)
 
 
 func _ready() -> void:

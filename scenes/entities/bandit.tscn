@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj3t58aw6o3s7"]
+[gd_scene format=3 uid="uid://dj3t58aw6o3s7"]
 
 [ext_resource type="Script" uid="uid://bo30u2m5q5xni" path="res://scripts/entities/bandit.gd" id="0_script"]
 [ext_resource type="Texture2D" uid="uid://b21pad1kq07o8" path="res://assets/sprites/enemies/bandit.png" id="1_ye54p"]

@@ -6,7 +6,13 @@ extends Node2D
 ## e decide quando o jogo termina. A lógica de cada entidade mora na própria
 ## entidade — esta cena apenas coordena.
 
+@onready var score: Label = $Background/Score
+@export var cena_do_boss: PackedScene
+
 signal pontuacao_mudou(nova_pontuacao: int)
+
+func _ready() -> void:
+	pontuacao_mudou.connect(atualizar_score)
 
 var pontuacao: int = 0:
 	set(valor):
@@ -21,7 +27,9 @@ func _ao_abater_bandido(pontos: int) -> void:
 
 ## Último bandido caiu.
 func _ao_derrotar_formacao() -> void:
-	terminar_em_vitoria()
+	var boss := cena_do_boss.instantiate()
+	boss.position = Vector2(-20, 40)
+	add_child(boss)
 
 
 ## Os bandidos chegaram à altura do xerife.
@@ -60,3 +68,6 @@ func terminar_em_vitoria() -> void:
 
 func somar_pontos(pontos: int) -> void:
 	pontuacao += pontos
+
+func atualizar_score(new_score: int) -> void:
+	score.text = "SCORE %d" % new_score

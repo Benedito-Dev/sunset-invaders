@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpnnuofdfkopm"]
+[gd_scene format=3 uid="uid://cpnnuofdfkopm"]
 
-[ext_resource type="AudioStream" uid="uid://dfuwm3aiwh1mm" path="res://assets/audio/sfx/start.wav" id="4_som"]
 [ext_resource type="FontFile" uid="uid://bqtaf8kxwn3vy" path="res://assets/fonts/atari-classic.ttf" id="1_font"]
-[ext_resource type="Script" uid="uid://d4lc7020t0mui" path="res://scripts/screens/start_screen.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://inr07weijahf" path="res://assets/sprites/ui/title-screen.png" id="1_piis8"]
+[ext_resource type="Script" uid="uid://d4lc7020t0mui" path="res://scripts/screens/start_screen.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://dmo2abes0v3ra" path="res://assets/audio/sfx/start.wav" id="4_som"]
 
-[node name="StartScreen" type="Control"]
+[node name="StartScreen" type="Control" unique_id=1437864861]
 layout_mode = 3
-script = ExtResource("1_script")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_script")
 
-[node name="TitleScreen" type="TextureRect" parent="."]
+[node name="TitleScreen" type="TextureRect" parent="." unique_id=1803673122]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ texture = ExtResource("1_piis8")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=594333797]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -45,5 +45,5 @@ text = "PRESS START"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SomDeStart" type="AudioStreamPlayer" parent="."]
+[node name="SomDeStart" type="AudioStreamPlayer" parent="." unique_id=1924378979]
 stream = ExtResource("4_som")

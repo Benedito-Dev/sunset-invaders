@@ -18,7 +18,7 @@ signal morreu
 @export var cena_da_bala: PackedScene
 
 ## Quantos tiros o xerife aguenta.
-@export var vidas: int = 3
+@export var vidas: int = 1
 
 ## Metade da largura do sprite, para o xerife não sair pela borda.
 @onready var _meia_largura: float = $Sprite2D.texture.get_width() / 2.0
@@ -88,7 +88,7 @@ func _atirar() -> void:
 		return
 	var bala := cena_da_bala.instantiate()
 	bala.direcao = -1
-	bala.grupo_alvo = &"bandidos"
+	bala.grupo_alvo = &"inimigos"
 	# A bala entra na fase, não no xerife: assim ela não se move junto com ele.
 	get_parent().add_child(bala)
 	bala.global_position = _ponto_de_tiro.global_position

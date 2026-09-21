@@ -7,7 +7,7 @@ extends Area2D
 ## e o grupo que o tiro procura.
 
 ## Velocidade, em pixels por segundo.
-@export var velocidade: float = 90.0
+@export var velocidade: float = 150.0
 
 ## -1 sobe (tiro do xerife), 1 desce (tiro do bandido).
 @export var direcao: int = -1

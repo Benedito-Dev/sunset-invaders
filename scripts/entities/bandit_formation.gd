@@ -19,8 +19,8 @@ signal formacao_alcancou_o_chao
 signal bandido_abatido(pontos: int)
 
 @export var cena_do_bandido: PackedScene
-@export var colunas: int = 9
-@export var linhas: int = 4
+@export var colunas: int = 1
+@export var linhas: int = 1
 
 ## Distância entre os cantos de dois bandidos vizinhos, em pixels.
 @export var espacamento: Vector2 = Vector2(16, 14)
@@ -52,7 +52,7 @@ signal bandido_abatido(pontos: int)
 @export var intervalo_minimo_para_saltar: float = 0.3
 
 ## Intervalo médio entre disparos da formação, em segundos.
-@export var intervalo_entre_disparos: float = 1.5
+@export var intervalo_entre_disparos: float = 1
 
 ## Variação aleatória aplicada ao intervalo, para o ritmo não ficar mecânico.
 @export var variacao_do_disparo: float = 0.7

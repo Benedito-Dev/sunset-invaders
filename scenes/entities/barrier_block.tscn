@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://dqaexyxk7gfgp"]
 
-[ext_resource type="Script" uid="uid://b6897bhekskv9" path="res://scripts/entities/barrier_block.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b7aa7bhekskwa" path="res://scripts/entities/barrier_block.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dwled8rrvh2dq" path="res://assets/sprites/environment/barrel.png" id="2_textura"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bloco"]
-size = Vector2(8, 4)
+size = Vector2(4, 4)
 
-[node name="BlocoDeBarreira" type="Area2D"]
+[node name="BlocoDeBarreira" type="Area2D" unique_id=86946910]
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Barreira" type="Sprite2D" parent="." unique_id=652134771]
 texture = ExtResource("2_textura")
+hframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594852700]
 shape = SubResource("RectangleShape2D_bloco")

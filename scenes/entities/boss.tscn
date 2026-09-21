@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dejla6xguvy2o"]
+
+[ext_resource type="Script" uid="uid://c8bmjprjoq8el" path="res://scripts/entities/boss.gd" id="1_ac02r"]
+[ext_resource type="Texture2D" uid="uid://cmndtpk1euwx1" path="res://assets/sprites/Boss/Chefe.png" id="1_mdhvr"]
+[ext_resource type="Texture2D" uid="uid://bgf64x8tkgfv8" path="res://assets/sprites/Boss/Chefe, Pouca Vida.png" id="2_ac02r"]
+[ext_resource type="PackedScene" uid="uid://c2hqxpyjf7xjo" path="res://scenes/entities/bullet.tscn" id="2_g24gc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g24gc"]
+atlas = ExtResource("1_mdhvr")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4agdh"]
+atlas = ExtResource("1_mdhvr")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxkur"]
+atlas = ExtResource("1_mdhvr")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5fgr"]
+atlas = ExtResource("1_mdhvr")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxmc4"]
+atlas = ExtResource("1_mdhvr")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t365j"]
+atlas = ExtResource("2_ac02r")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqlna"]
+atlas = ExtResource("2_ac02r")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3gvn"]
+atlas = ExtResource("2_ac02r")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5joy1"]
+atlas = ExtResource("2_ac02r")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woypx"]
+atlas = ExtResource("2_ac02r")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqdo5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g24gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4agdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxkur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5fgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxmc4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t365j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqlna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3gvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5joy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woypx")
+}],
+"loop": 1,
+"name": &"low_life",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_con8p"]
+size = Vector2(14, 27)
+
+[node name="Boss" type="Area2D" unique_id=1420179503]
+script = ExtResource("1_ac02r")
+cena_da_bala = ExtResource("2_g24gc")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2066777017]
+sprite_frames = SubResource("SpriteFrames_eqdo5")
+frame = 4
+frame_progress = 0.38469976
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=582733930]
+visible = false
+position = Vector2(2, -2.5)
+shape = SubResource("RectangleShape2D_con8p")
+
+[node name="Spawn_Bullet" type="Marker2D" parent="." unique_id=947916628]
+position = Vector2(-0.52, 10.585)
