@@ -15,6 +15,11 @@ extends CanvasLayer
 ## Emitido quando a nova cena já está ativa e o fade-in terminou.
 signal transition_finished
 
+const TITLE := "res://scenes/screens/title.tscn"
+const GAME := "res://scenes/screens/game.tscn"
+const GAME_OVER := "res://scenes/screens/game_over.tscn"
+const VICTORY := "res://scenes/screens/victory.tscn"
+
 const FADE_DURATION := 0.3
 
 ## Pontuação da última partida, lida pelas telas de fim de jogo.
@@ -42,22 +47,22 @@ func _build_fade_rect() -> void:
 
 
 func goto_title() -> void:
-	_change_scene(GamePaths.TITLE)
+	_change_scene(TITLE)
 
 
 func goto_game() -> void:
 	last_score = 0
-	_change_scene(GamePaths.GAME)
+	_change_scene(GAME)
 
 
 func goto_game_over(score: int = 0) -> void:
 	last_score = score
-	_change_scene(GamePaths.GAME_OVER)
+	_change_scene(GAME_OVER)
 
 
 func goto_victory(score: int = 0) -> void:
 	last_score = score
-	_change_scene(GamePaths.VICTORY)
+	_change_scene(VICTORY)
 
 
 ## Fade out → troca a cena → fade in.
