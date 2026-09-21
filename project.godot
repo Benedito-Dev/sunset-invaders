@@ -23,12 +23,15 @@ SceneManager="*res://scripts/autoload/scene_manager.gd"
 
 window/size/viewport_width=256
 window/size/viewport_height=224
+window/size/resizable=false
 window/size/window_width_override=768
 window/size/window_height_override=672
-window/size/resizable=false
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
 window/stretch/scale_mode="integer"
+
+[gui]
+
+theme/custom="res://assets/themes/main_theme.tres"
 
 [input]
 
