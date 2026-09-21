@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://spuqk74xqwin"]
 
+[ext_resource type="PackedScene" uid="uid://cumlp2ngvv742" path="res://scenes/entities/player.tscn" id="1_4fj8y"]
+
 [node name="MainFase" type="Node2D" unique_id=1183728124]
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=162079941]
+layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Background" unique_id=1623774529]
 anchors_preset = 15
@@ -11,3 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.61725473, 0.1624631, 0, 1)
+
+[node name="Player" parent="." unique_id=1501411112 instance=ExtResource("1_4fj8y")]
+position = Vector2(130, 188)

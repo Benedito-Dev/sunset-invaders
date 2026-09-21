@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cumlp2ngvv742"]
+[gd_scene load_steps=4 format=3 uid="uid://cumlp2ngvv742"]
 
-[ext_resource type="Script" uid="uid://bqa49yfmxbh2w" path="res://scripts/entities/player.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://pcjeifidnm1e" path="res://assets/sprites/player/sheriff.png" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://c2hqxpyjf7xjo" path="res://scenes/entities/bullet.tscn" id="3_bala"]
+[ext_resource type="Script" uid="uid://bqa5ayfmxbh2w" path="res://scripts/entities/player.gd" id="1_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_con8p"]
 size = Vector2(16, 15.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=1501411112]
 script = ExtResource("1_script")
+cena_da_bala = ExtResource("3_bala")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1308959773]
 texture = ExtResource("1_3vyb7")
@@ -15,3 +17,6 @@ texture = ExtResource("1_3vyb7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=807694509]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_con8p")
+
+[node name="Spawn_Bullet" type="Marker2D" parent="." unique_id=1427643497]
+position = Vector2(6, -8)
