@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://dh82ig6x3flrd"]
+[gd_scene load_steps=3 format=3 uid="uid://cpnnuofdfkopm"]
 
+[ext_resource type="Script" uid="uid://d4lc7020t0mui" path="res://scripts/screens/start_screen.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://inr07weijahf" path="res://assets/sprites/ui/title-screen.png" id="1_piis8"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
+script = ExtResource("1_script")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

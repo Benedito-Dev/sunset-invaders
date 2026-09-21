@@ -19,6 +19,13 @@ func _ready() -> void:
 	pass
 
 
+# TEMPORÁRIO: atalho para voltar à tela de início enquanto não há jogabilidade.
+# Remova quando a derrota real existir.
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		SceneManager.goto_start_screen()
+
+
 ## Chame quando o jogador perder a última vida.
 func end_in_defeat() -> void:
 	SceneManager.goto_game_over(score)
