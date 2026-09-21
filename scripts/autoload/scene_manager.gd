@@ -35,6 +35,18 @@ func _ready() -> void:
 	_build_fade_rect()
 
 
+## F11 alterna tela cheia em qualquer tela do jogo.
+func _unhandled_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("toggle_fullscreen"):
+		return
+	var is_fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	DisplayServer.window_set_mode(
+		DisplayServer.WINDOW_MODE_WINDOWED if is_fullscreen
+		else DisplayServer.WINDOW_MODE_FULLSCREEN
+	)
+	get_viewport().set_input_as_handled()
+
+
 ## Cria o retângulo preto que cobre a tela durante a troca.
 func _build_fade_rect() -> void:
 	_fade = ColorRect.new()
