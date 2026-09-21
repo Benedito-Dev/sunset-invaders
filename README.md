@@ -78,13 +78,20 @@ Em seguida, abra o **Godot Engine**, clique em `Importar`, selecione o arquivo
 
 ```
 sunset-invaders/
-├── .editorconfig       # Padronização de encoding entre editores
-├── .gitattributes      # Normalização de fim de linha (LF)
-├── .gitignore          # Ignora artefatos do Godot (.godot/, /android/)
+├── assets/             # Recursos importados pela engine (res://assets/...)
+│   └── sprites/
+│       ├── player/         # Xerife e projéteis
+│       ├── enemies/        # Bandidos e chefes
+│       ├── environment/    # Cobertura destrutível
+│       └── ui/             # Telas e interface
+├── art-source/         # Arquivos .aseprite editáveis (não lidos pela engine)
 ├── icon.svg            # Ícone do projeto
 ├── LICENSE             # Licença MIT
 └── project.godot       # Configuração da engine
 ```
+
+Cada pasta de recursos tem seu próprio README com convenções de nomenclatura e
+fluxo de trabalho: [`assets/`](assets/README.md) e [`art-source/`](art-source/README.md).
 
 > A estrutura de cenas e scripts será documentada conforme o desenvolvimento avança.
 
