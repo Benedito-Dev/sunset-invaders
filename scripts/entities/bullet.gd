@@ -18,6 +18,8 @@ var grupo_alvo: StringName = &""
 
 func _ready() -> void:
 	area_entered.connect(_ao_encostar_em)
+	# A arte aponta para cima; descendo, o sprite é espelhado na vertical.
+	$Sprite2D.flip_v = direcao > 0
 
 
 func _physics_process(delta: float) -> void:
