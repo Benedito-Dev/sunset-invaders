@@ -12,6 +12,7 @@ const PISCADAS := 4
 const INTERVALO_PISCADA := 0.08
 
 @onready var _rotulo: Label = $Label
+@onready var _som_de_start: AudioStreamPlayer = $SomDeStart
 
 var _confirmado := false
 
@@ -21,6 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	_confirmado = true
 	get_viewport().set_input_as_handled()
+	_som_de_start.play()
 	_piscar_e_comecar()
 
 
@@ -33,6 +35,9 @@ func _piscar_e_comecar() -> void:
 		tween.tween_callback(_mostrar_rotulo.bind(true))
 		tween.tween_interval(INTERVALO_PISCADA)
 	await tween.finished
+	# Deixa o som terminar antes de trocar de cena, para não cortá-lo.
+	if _som_de_start.playing:
+		await _som_de_start.finished
 	SceneManager.ir_para_fase()
 
 

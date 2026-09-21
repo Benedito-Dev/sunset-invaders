@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpnnuofdfkopm"]
+[gd_scene load_steps=5 format=3 uid="uid://cpnnuofdfkopm"]
 
+[ext_resource type="AudioStream" uid="uid://dfuwm3aiwh1mm" path="res://assets/audio/sfx/start.wav" id="4_som"]
 [ext_resource type="FontFile" uid="uid://bqtaf8kxwn3vy" path="res://assets/fonts/atari-classic.ttf" id="1_font"]
 [ext_resource type="Script" uid="uid://d4lc7020t0mui" path="res://scripts/screens/start_screen.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://inr07weijahf" path="res://assets/sprites/ui/title-screen.png" id="1_piis8"]
@@ -43,3 +44,6 @@ theme_override_font_sizes/font_size = 10
 text = "PRESS START"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SomDeStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_som")
