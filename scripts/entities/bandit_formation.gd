@@ -3,8 +3,8 @@ extends Node2D
 ## A formação de bandidos.
 ##
 ## Monta a grade e move todos juntos: avança na horizontal até alguém encostar
-## na borda, então desce um degrau e inverte o sentido. A cada passo os bandidos
-## trocam de pose, o que cria o ritmo característico do gênero.
+## na borda, então desce um degrau e inverte o sentido. Os bandidos encaram o
+## lado para onde a formação caminha.
 
 ## Emitido quando o último bandido cai.
 signal formacao_derrotada
@@ -37,14 +37,18 @@ signal bandido_abatido(pontos: int)
 ## Altura em que a formação é considerada no chão.
 @export var altura_limite: float = 180.0
 
+## Índices dos quadros de pose no AnimatedSprite2D do bandido.
+const POSE_ESQUERDA := 0
+const POSE_DIREITA := 1
+
 var _sentido := 1
-var _pose := 0
 var _tempo_ate_o_proximo_passo := 0.0
 var _total_inicial := 0
 
 
 func _ready() -> void:
 	_montar_grade()
+	_encarar_o_sentido()
 	_tempo_ate_o_proximo_passo = intervalo_inicial
 
 
@@ -70,19 +74,23 @@ func _montar_grade() -> void:
 	_total_inicial = get_child_count()
 
 
-## Move a formação um passo e alterna a pose de todos.
+## Move a formação um passo. Ao virar, todos passam a encarar o novo lado.
 func _dar_um_passo() -> void:
 	if _vai_ultrapassar_a_borda():
 		_sentido *= -1
 		position.y += passo_vertical
+		_encarar_o_sentido()
 		if position.y >= altura_limite:
 			formacao_alcancou_o_chao.emit()
 	else:
 		position.x += passo_horizontal * _sentido
 
-	_pose = 1 - _pose
+
+## Aponta todos os bandidos para o lado em que a formação caminha.
+func _encarar_o_sentido() -> void:
+	var pose := POSE_DIREITA if _sentido > 0 else POSE_ESQUERDA
 	for bandido in get_children():
-		bandido.trocar_pose(_pose)
+		bandido.trocar_pose(pose)
 
 
 ## Verifica se o próximo passo colocaria algum bandido fora da tela.
