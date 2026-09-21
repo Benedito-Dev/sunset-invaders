@@ -3,32 +3,33 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bqtaf8kxwn3vy"
-path="res://.godot/imported/atari-classic.ttf-3f38ba41e16ca9f0f80f9e3fb34ef33d.fontdata"
+path="res://.godot/imported/atari-classic.ttf-47df2cc0137fc790301879848c59086a.fontdata"
 
 [deps]
 
 source_file="res://assets/fonts/atari-classic.ttf"
-dest_files=["res://.godot/imported/atari-classic.ttf-3f38ba41e16ca9f0f80f9e3fb34ef33d.fontdata"]
+dest_files=["res://.godot/imported/atari-classic.ttf-47df2cc0137fc790301879848c59086a.fontdata"]
 
 [params]
 
-Rendering/antialiasing=0
-Rendering/glyph_range=0
-Rendering/generate_mipmaps=false
-Rendering/disable_embedded_bitmaps=true
-Rendering/multichannel_signed_distance_field=false
-Rendering/msdf_pixel_range=8
-Rendering/msdf_size=48
-Rendering/allow_system_fallback=true
-Rendering/force_autohinter=false
-Rendering/modulate_color_glyphs=false
-Rendering/hinting=0
-Rendering/subpixel_positioning=0
-Rendering/keep_rounding_remainders=true
-Rendering/oversampling=0.0
-Fallbacks/face_index=0
-Fallbacks/fallbacks=[]
-Compress/compress=true
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=0
+subpixel_positioning=0
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
 preload=[]
 language_support={}
 script_support={}
