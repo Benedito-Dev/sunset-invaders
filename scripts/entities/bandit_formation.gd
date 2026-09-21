@@ -46,6 +46,12 @@ signal bandido_abatido(pontos: int)
 ## Quanto tempo a formação fica suspensa no ápice, em segundos.
 @export var tempo_no_apice: float = 0.1
 
+## Intervalo médio entre disparos da formação, em segundos.
+@export var intervalo_entre_disparos: float = 1.5
+
+## Variação aleatória aplicada ao intervalo, para o ritmo não ficar mecânico.
+@export var variacao_do_disparo: float = 0.7
+
 ## Índices dos quadros de pose no AnimatedSprite2D do bandido.
 const POSE_ESQUERDA := 0
 const POSE_DIREITA := 1
@@ -57,20 +63,62 @@ var _total_inicial := 0
 ## Onde a formação pousa ao fim do salto em curso.
 var _pouso := Vector2.ZERO
 
+var _tempo_ate_o_proximo_disparo := 0.0
+
 
 func _ready() -> void:
 	_montar_grade()
 	_encarar_o_sentido()
 	_pouso = position
 	_tempo_ate_o_proximo_passo = intervalo_inicial
+	_agendar_proximo_disparo()
 
 
 func _process(delta: float) -> void:
+	_processar_disparo(delta)
+
 	_tempo_ate_o_proximo_passo -= delta
 	if _tempo_ate_o_proximo_passo > 0.0:
 		return
 	_dar_um_passo()
 	_tempo_ate_o_proximo_passo = _intervalo_atual()
+
+
+## Periodicamente escolhe um bandido da linha de frente para atirar.
+func _processar_disparo(delta: float) -> void:
+	_tempo_ate_o_proximo_disparo -= delta
+	if _tempo_ate_o_proximo_disparo > 0.0:
+		return
+	var atirador := _sortear_atirador()
+	if atirador != null:
+		atirador.atirar()
+	_agendar_proximo_disparo()
+
+
+func _agendar_proximo_disparo() -> void:
+	var variacao := randf_range(-variacao_do_disparo, variacao_do_disparo)
+	_tempo_ate_o_proximo_disparo = maxf(intervalo_entre_disparos + variacao, 0.2)
+
+
+## Só atira quem não tem nenhum companheiro à frente, na mesma coluna.
+func _sortear_atirador() -> Node2D:
+	var linha_de_frente: Array[Node2D] = []
+	for bandido: Node2D in get_children():
+		if _esta_na_linha_de_frente(bandido):
+			linha_de_frente.append(bandido)
+	if linha_de_frente.is_empty():
+		return null
+	return linha_de_frente.pick_random()
+
+
+func _esta_na_linha_de_frente(bandido: Node2D) -> bool:
+	for outro: Node2D in get_children():
+		if outro == bandido:
+			continue
+		var mesma_coluna := is_equal_approx(outro.position.x, bandido.position.x)
+		if mesma_coluna and outro.position.y > bandido.position.y:
+			return false
+	return true
 
 
 ## Cria os bandidos em grade, posicionados em relação a este nó.

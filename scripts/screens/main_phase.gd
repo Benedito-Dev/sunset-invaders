@@ -29,6 +29,11 @@ func _ao_formacao_alcancar_o_chao() -> void:
 	terminar_em_derrota()
 
 
+## O xerife perdeu a última vida.
+func _ao_morrer_o_xerife() -> void:
+	terminar_em_derrota()
+
+
 # TEMPORÁRIO: atalho para voltar à tela de início enquanto não há jogabilidade.
 # Remova quando a derrota real existir.
 func _unhandled_input(event: InputEvent) -> void:

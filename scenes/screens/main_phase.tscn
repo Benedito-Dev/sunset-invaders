@@ -30,3 +30,4 @@ cena_do_bandido = ExtResource("4_bandido")
 [connection signal="bandido_abatido" from="Bandidos" to="." method="_ao_abater_bandido"]
 [connection signal="formacao_alcancou_o_chao" from="Bandidos" to="." method="_ao_formacao_alcancar_o_chao"]
 [connection signal="formacao_derrotada" from="Bandidos" to="." method="_ao_derrotar_formacao"]
+[connection signal="morreu" from="Player" to="." method="_ao_morrer_o_xerife"]

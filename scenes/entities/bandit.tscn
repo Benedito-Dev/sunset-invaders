@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://dj3t58aw6o3s7"]
+[gd_scene load_steps=7 format=3 uid="uid://dj3t58aw6o3s7"]
 
 [ext_resource type="Script" uid="uid://bo30u2m5q5xni" path="res://scripts/entities/bandit.gd" id="0_script"]
 [ext_resource type="Texture2D" uid="uid://b21pad1kq07o8" path="res://assets/sprites/enemies/bandit.png" id="1_ye54p"]
+[ext_resource type="PackedScene" uid="uid://c2hqxpyjf7xjo" path="res://scenes/entities/bullet.tscn" id="2_bala"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u68yi"]
 atlas = ExtResource("1_ye54p")
@@ -30,6 +31,7 @@ size = Vector2(12, 12)
 
 [node name="Bandit" type="Area2D" unique_id=2109188814]
 script = ExtResource("0_script")
+cena_da_bala = ExtResource("2_bala")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=42668297]
 scale = Vector2(1.5, 1.5)
@@ -37,3 +39,6 @@ sprite_frames = SubResource("SpriteFrames_con8p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1921172114]
 shape = SubResource("RectangleShape2D_con8p")
+
+[node name="Spawn_Bullet" type="Marker2D" parent="." unique_id=1393746719]
+position = Vector2(-4, 7)
