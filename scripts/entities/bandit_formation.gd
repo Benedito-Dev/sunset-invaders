@@ -70,8 +70,22 @@ var _pouso := Vector2.ZERO
 
 var _tempo_ate_o_proximo_disparo := 0.0
 
+## Posição de partida da formação, guardada para restaurar a cada nova onda.
+var _posicao_inicial := Vector2.ZERO
+
 
 func _ready() -> void:
+	_posicao_inicial = position
+	iniciar_onda()
+
+
+## Monta uma grade nova de bandidos e reseta o movimento do zero. Chamado no
+## início da fase e sempre que uma onda precisa recomeçar, pelo loop do jogo.
+func iniciar_onda() -> void:
+	position = _posicao_inicial
+	_sentido = 1
+	_tempo_ate_o_proximo_passo = 0.0
+	_tempo_ate_o_proximo_disparo = 0.0
 	_montar_grade()
 	_encarar_o_sentido()
 	_pouso = position

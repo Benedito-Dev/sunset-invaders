@@ -20,6 +20,12 @@ var _controlavel := true
 ## Cena instanciada a cada disparo.
 @export var cena_da_bala: PackedScene
 
+## Quantos tiros saem por disparo.
+var _tiros_por_disparo := 1
+
+## Abertura total do leque, em graus.
+@export var abertura_do_leque: float = 40.0
+
 ## Quantos tiros o xerife aguenta.
 @export var vidas: int = 1
 
@@ -91,12 +97,23 @@ func _atirar() -> void:
 	if cena_da_bala == null:
 		push_warning("Player: nenhuma cena de bala atribuída no Inspector.")
 		return
-	var bala := cena_da_bala.instantiate()
-	bala.direcao = -1
-	bala.grupo_alvo = &"inimigos"
-	# A bala entra na fase, não no xerife: assim ela não se move junto com ele.
-	get_parent().add_child(bala)
-	bala.global_position = _ponto_de_tiro.global_position
+		
+	for i in _tiros_por_disparo:
+		var angulo := 0.0
+		if _tiros_por_disparo > 1:
+			var passo := abertura_do_leque / float(_tiros_por_disparo - 1)
+			angulo = -abertura_do_leque / 2.0 + i * passo
+			
+		var bala := cena_da_bala.instantiate()
+		bala.direcao = Vector2.UP.rotated(deg_to_rad(angulo))
+		bala.grupo_alvo = &"inimigos"
+		# A bala entra na fase, não no xerife: assim ela não se move junto com ele.
+		get_parent().add_child(bala)
+		bala.global_position = _ponto_de_tiro.global_position
+	
+func ativar_leque() -> void:
+	cena_da_bala = preload("res://scenes/entities/shot_gun_bullet.tscn")
+	_tiros_por_disparo = 5
 	
 func definir_controlavel(pode: bool) -> void:
 	_controlavel = pode

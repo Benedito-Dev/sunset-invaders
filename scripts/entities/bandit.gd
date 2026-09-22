@@ -33,7 +33,7 @@ func atirar() -> void:
 	if cena_da_bala == null:
 		return
 	var bala := cena_da_bala.instantiate()
-	bala.direcao = 1
+	bala.direcao = Vector2.DOWN
 	bala.grupo_alvo = &"jogador"
 	# A bala entra na fase, para não acompanhar o movimento da formação.
 	get_tree().current_scene.add_child(bala)

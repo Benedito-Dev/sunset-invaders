@@ -12,6 +12,9 @@ extends Area2D
 ## Para onde a bala viaja. Vector2.UP sobe, Vector2.DOWN desce.
 @export var direcao: Vector2 = Vector2.UP
 
+## Sprite da bala
+@onready var Sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 ## Grupo que este tiro acerta. Impede que bala inimiga atinja outro inimigo.
 var grupo_alvo: StringName = &""
 
@@ -19,7 +22,8 @@ var grupo_alvo: StringName = &""
 func _ready() -> void:
 	area_entered.connect(_ao_encostar_em)
 	# A arte aponta para cima; descendo, o sprite é espelhado na vertical.
-	$Sprite2D.flip_v = direcao.y > 0
+	Sprite.flip_v = direcao.y > 0
+	Sprite.play("default")
 
 
 func _physics_process(delta: float) -> void:

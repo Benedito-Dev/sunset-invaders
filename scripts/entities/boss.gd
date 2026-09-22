@@ -7,10 +7,12 @@ enum Estado { ENTRANDO, PARADO, PATRULHANDO }
 
 ## Emitido quando a entrada termina e a patrulha começa.
 signal patrulha_iniciada
+signal abatido(pontos: int)
 
 ## Vida
 @export var life: int = 30
 @onready var _vida_maxima: int = life
+@export var pontos: int = 1000
 
 @export var duracao_do_pisca: float = 0.12
 
@@ -122,7 +124,7 @@ func atirar() -> void:
 	if cena_da_bala == null:
 		return
 	var bala := cena_da_bala.instantiate()
-	bala.direcao = 1
+	bala.direcao = Vector2.DOWN
 	bala.velocidade = 300
 	bala.grupo_alvo = &"jogador"
 	# A bala entra na fase, para não acompanhar o movimento da formação.
@@ -143,8 +145,15 @@ func _piscar() -> void:
 func levar_tiro() -> void:
 	life -= 1
 	if life <= _vida_maxima * 0.30:
-		Boss_Sprite.play("low_life")
+		low_life()
 	if life <= 0:
+		abatido.emit(pontos)
 		queue_free()
 		return
 	_piscar()
+	
+func low_life() -> void:
+	Boss_Sprite.play("low_life")
+	Boss_Sprite.speed_scale = 2
+	velocidade = 80
+	

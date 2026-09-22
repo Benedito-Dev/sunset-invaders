@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://c1o58yfnfvmwq"]
+
+[ext_resource type="Texture2D" uid="uid://pff28nj2e3rw" path="res://assets/sprites/player/ShotGun.png" id="1_1wao8"]
+[ext_resource type="Script" uid="uid://b6y5qw85kvx6f" path="res://scripts/entities/shot_gun_bullet.gd" id="1_e5qj8"]
+[ext_resource type="AudioStream" uid="uid://bw8kttpnfgi1r" path="res://assets/audio/sfx/shoot.wav" id="3_t816m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5qj8"]
+atlas = ExtResource("1_1wao8")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t816m"]
+atlas = ExtResource("1_1wao8")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_con8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5qj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t816m")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqdo5"]
+size = Vector2(6.945, 6.93)
+
+[node name="ShotGunBullet" type="Area2D" unique_id=1012403796]
+script = ExtResource("1_e5qj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=648244614]
+sprite_frames = SubResource("SpriteFrames_con8p")
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=189773778]
+position = Vector2(-0.03, 0)
+shape = SubResource("RectangleShape2D_eqdo5")
+
+[node name="SaidaDeTela" type="VisibleOnScreenNotifier2D" parent="." unique_id=1471568001]
+rect = Rect2(-1.5, -3.5, 3, 7)
+
+[node name="SomDoTiro" type="AudioStreamPlayer" parent="." unique_id=1264320242]
+stream = ExtResource("3_t816m")
+autoplay = true
