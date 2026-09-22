@@ -8,6 +8,9 @@ signal vida_perdida(vidas_restantes: int)
 ## Emitido quando acaba a última vida.
 signal morreu
 
+## Enquanto falso, o xerife não anda nem atira.
+var _controlavel := true
+
 ## Velocidade horizontal, em pixels por segundo.
 @export var velocidade: float = 80.0
 
@@ -38,6 +41,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not _controlavel:
+		return
 	_mover(delta)
 	_processar_tiro(delta)
 
@@ -92,3 +97,8 @@ func _atirar() -> void:
 	# A bala entra na fase, não no xerife: assim ela não se move junto com ele.
 	get_parent().add_child(bala)
 	bala.global_position = _ponto_de_tiro.global_position
+	
+func definir_controlavel(pode: bool) -> void:
+	_controlavel = pode
+	if not pode:
+		velocity.x = 0.0

@@ -19,8 +19,8 @@ signal formacao_alcancou_o_chao
 signal bandido_abatido(pontos: int)
 
 @export var cena_do_bandido: PackedScene
-@export var colunas: int = 1
-@export var linhas: int = 1
+@export var colunas: int = 9
+@export var linhas: int = 4
 
 ## Distância entre os cantos de dois bandidos vizinhos, em pixels.
 @export var espacamento: Vector2 = Vector2(16, 14)

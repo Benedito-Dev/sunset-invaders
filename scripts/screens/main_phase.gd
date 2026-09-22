@@ -29,7 +29,9 @@ func _ao_abater_bandido(pontos: int) -> void:
 func _ao_derrotar_formacao() -> void:
 	var boss := cena_do_boss.instantiate()
 	boss.position = Vector2(-20, 40)
+	boss.patrulha_iniciada.connect(_ao_iniciar_patrulha_do_chefe)
 	add_child(boss)
+	$Player.definir_controlavel(false)
 
 
 ## Os bandidos chegaram à altura do xerife.
@@ -40,6 +42,9 @@ func _ao_formacao_alcancar_o_chao() -> void:
 ## O xerife perdeu a última vida.
 func _ao_morrer_o_xerife() -> void:
 	terminar_em_derrota()
+	
+func _ao_iniciar_patrulha_do_chefe() -> void:
+	$Player.definir_controlavel(true)
 
 
 # TEMPORÁRIO: atalho para voltar à tela de início enquanto não há jogabilidade.

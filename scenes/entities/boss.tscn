@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cmndtpk1euwx1" path="res://assets/sprites/Boss/Chefe.png" id="1_mdhvr"]
 [ext_resource type="Texture2D" uid="uid://bgf64x8tkgfv8" path="res://assets/sprites/Boss/Chefe, Pouca Vida.png" id="2_ac02r"]
 [ext_resource type="PackedScene" uid="uid://c2hqxpyjf7xjo" path="res://scenes/entities/bullet.tscn" id="2_g24gc"]
+[ext_resource type="Texture2D" uid="uid://didlbpxwqc488" path="res://assets/sprites/Boss/Chefe entrada.png" id="4_4agdh"]
+[ext_resource type="Texture2D" uid="uid://djrjre224v0vy" path="res://assets/sprites/Boss/Chefe, so o Cavalo.png" id="6_hxkur"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g24gc"]
 atlas = ExtResource("1_mdhvr")
@@ -25,6 +27,14 @@ region = Rect2(120, 0, 40, 32)
 atlas = ExtResource("1_mdhvr")
 region = Rect2(160, 0, 40, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0bfu"]
+atlas = ExtResource("4_4agdh")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssu7g"]
+atlas = ExtResource("4_4agdh")
+region = Rect2(40, 0, 40, 41)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_t365j"]
 atlas = ExtResource("2_ac02r")
 region = Rect2(0, 0, 40, 32)
@@ -43,6 +53,26 @@ region = Rect2(120, 0, 40, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_woypx"]
 atlas = ExtResource("2_ac02r")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phd7l"]
+atlas = ExtResource("6_hxkur")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mboqh"]
+atlas = ExtResource("6_hxkur")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4kwk"]
+atlas = ExtResource("6_hxkur")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnine"]
+atlas = ExtResource("6_hxkur")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c274t"]
+atlas = ExtResource("6_hxkur")
 region = Rect2(160, 0, 40, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eqdo5"]
@@ -69,6 +99,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_g0bfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssu7g")
+}],
+"loop": 1,
+"name": &"entrada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_t365j")
 }, {
 "duration": 1.0,
@@ -86,6 +127,26 @@ animations = [{
 "loop": 1,
 "name": &"low_life",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phd7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mboqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4kwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnine")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c274t")
+}],
+"loop": 1,
+"name": &"so_cavalo",
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_con8p"]
@@ -97,8 +158,9 @@ cena_da_bala = ExtResource("2_g24gc")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2066777017]
 sprite_frames = SubResource("SpriteFrames_eqdo5")
-frame = 4
-frame_progress = 0.38469976
+animation = &"so_cavalo"
+frame = 3
+frame_progress = 0.92747813
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=582733930]
 visible = false

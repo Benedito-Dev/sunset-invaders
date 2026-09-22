@@ -5,8 +5,14 @@ extends Area2D
 # ── Os três momentos do boss ──────────────────────────────
 enum Estado { ENTRANDO, PARADO, PATRULHANDO }
 
+## Emitido quando a entrada termina e a patrulha começa.
+signal patrulha_iniciada
+
 ## Vida
 @export var life: int = 30
+@onready var _vida_maxima: int = life
+
+@export var duracao_do_pisca: float = 0.12
 
 ## Cena instanciada quando este bandido atira.
 @export var cena_da_bala: PackedScene
@@ -18,7 +24,7 @@ enum Estado { ENTRANDO, PARADO, PATRULHANDO }
 @export var velocidade: float = 40.0
 
 ## Quanto tempo ele fica imóvel no centro antes de começar a patrulhar.
-@export var pausa_ao_chegar: float = 0.5
+@export var pausa_ao_chegar: float = 2
 
 # Intervalo de Disparo
 @export var intervalo_entre_tiros: float = 0.8
@@ -65,12 +71,14 @@ func _avancar_para_o_centro(delta: float) -> void:
 func _fazer_a_pausa() -> void:
 	_estado = Estado.PARADO
 	Boss_Sprite.pause()
+	Boss_Sprite.play("entrada")
 
 	# Espera sem travar o jogo: o resto continua rodando normalmente.
 	await get_tree().create_timer(pausa_ao_chegar).timeout
 
 	_estado = Estado.PATRULHANDO
 	Boss_Sprite.play("default")
+	patrulha_iniciada.emit()
 
 # ── Momento 3: patrulhar ──────────────────────────────────
 func _patrulhar(delta: float) -> void:
@@ -102,11 +110,6 @@ func _patrulhar(delta: float) -> void:
 	elif position.y >= altura_maxima:
 		position.y = altura_maxima
 		_direcao.y = -_direcao.y
-	
-	if _direcao.x < 0:
-		Boss_Sprite.rotation = (-_direcao).angle()
-	else:
-		Boss_Sprite.rotation = _direcao.angle()
 
 ## Inverte a direção horizontal e desvia o resultado num ângulo aleatório.
 func _ricochetear_com_desvio() -> void:
@@ -126,10 +129,22 @@ func atirar() -> void:
 	get_tree().current_scene.add_child(bala)
 	bala.global_position = _ponto_de_tiro.global_position
 	
+	
+# ── Piscar ──────────────────────────────────
+func _piscar() -> void:
+	Boss_Sprite.animation = &"so_cavalo"
+	await get_tree().create_timer(duracao_do_pisca).timeout
+	if life >= _vida_maxima * 0.30:
+		Boss_Sprite.animation = &"default"
+	else:
+		Boss_Sprite.animation = &"low_life"
+	
 # ── Levar tiro ──────────────────────────────────
 func levar_tiro() -> void:
 	life -= 1
-	if life <= life * 0.30:
+	if life <= _vida_maxima * 0.30:
 		Boss_Sprite.play("low_life")
 	if life <= 0:
 		queue_free()
+		return
+	_piscar()
